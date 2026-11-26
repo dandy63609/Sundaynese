@@ -1,9 +1,8 @@
 import greenfoot.Actor;
-import greenfoot.Greenfoot;
 import greenfoot.World;
 
 /**
- * Ambient Sundanese dad fishing buddy who periodically chats in mixed Indonesian/Sundanese.
+ * Ambient Sundanese dad fishing buddy who speaks once in mixed Indonesian/Sundanese.
  */
 public class NpcDadActor extends Actor
 {
@@ -18,6 +17,7 @@ public class NpcDadActor extends Actor
     private final String speakerName;
     private int chatTimer;
     private int lineIndex;
+    private boolean hasSpoken = false;
     private ShadowActor shadow;
 
     public NpcDadActor(String speakerName, String imagePath, boolean mirror, int initialDelay, int startLineIndex)
@@ -47,7 +47,11 @@ public class NpcDadActor extends Actor
     @Override
     public void act()
     {
-        if (getWorld() == null)
+        if (getWorld() == null || hasSpoken)
+        {
+            return;
+        }
+        if (getWorld() instanceof ExplorationWorld && ((ExplorationWorld) getWorld()).hasActiveOverlay())
         {
             return;
         }
@@ -55,8 +59,13 @@ public class NpcDadActor extends Actor
         if (chatTimer <= 0)
         {
             speakNextLine();
-            chatTimer = 210 + Greenfoot.getRandomNumber(70);
+            hasSpoken = true;
         }
+    }
+
+    public boolean hasSpoken()
+    {
+        return hasSpoken;
     }
 
     private void speakNextLine()
