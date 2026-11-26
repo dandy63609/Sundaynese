@@ -20,7 +20,7 @@ public class FishingOverlay extends MiniGameOverlay
 
     private final GreenfootImage bobberImg;
     private final GreenfootImage fishImg;
-    private final GreenfootImage coffeePov;
+    private final GreenfootImage bapakPov;
 
     private int fishCaught = 0;
     private Phase phase = Phase.READY_TO_CAST;
@@ -32,7 +32,7 @@ public class FishingOverlay extends MiniGameOverlay
     {
         bobberImg = Theme.loadNearest("images/bobber.png", 36, 36);
         fishImg = Theme.loadNearest("images/fish.png", 72, 48);
-        coffeePov = Theme.loadNearest("images/bapak_pov_coffee.png", 120, 120);
+        bapakPov = Theme.loadNearest("images/bapak_pov_shirt_highlight.png", 128, 128);
         reset();
     }
 
@@ -204,8 +204,18 @@ public class FishingOverlay extends MiniGameOverlay
         Theme.fillRoundRect(canvas, waterX, waterY, waterW, waterH, 10,
                 new Color(34, 96, 68), Theme.BORDER_WOOD, 3);
 
-        // Small Mang Ujang portrait on dock corner puffing cigarette
-        canvas.drawImage(coffeePov, waterX + 10, waterY + waterH - 124);
+        // Mang Ujang in his KDM fishing shirt on dock corner
+        canvas.drawImage(bapakPov, waterX + 8, waterY + waterH - 128);
+
+        // Ambient fishing chatter from neighboring Sundanese dads
+        String banter = (phase == Phase.WAITING_BITE)
+                ? (stateTimer % 160 < 80 ? "Mang Jaja: \"Antengkeun atuh, laukna keur ngintip!\"" : "Mang Asep: \"Racikan pelet Mang Ujang arum yeuh!\"")
+                : (phase == Phase.STRIKE_NOW ? "Mang Jaja: \"TARIK MANG UJANG, GEDE ETA!\"" : "");
+        if (!banter.isEmpty())
+        {
+            Theme.drawCenteredText(canvas, banter, Theme.WORLD_WIDTH / 2, waterY + 24,
+                    Theme.FONT_DIALOGUE, Theme.ACCENT_WARNING);
+        }
 
         // Bobber / Fish visual
         int bx = waterX + waterW / 2 + 40;

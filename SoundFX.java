@@ -1,4 +1,5 @@
 import greenfoot.Greenfoot;
+import greenfoot.GreenfootSound;
 
 /**
  * Audio-optional sound helper wrapping GreenfootSound/Greenfoot.playSound safely.
@@ -15,8 +16,10 @@ public final class SoundFX
     public static final String BIKE = "sfx_bike.wav";
     public static final String SPLASH = "sfx_splash.wav";
     public static final String WIN = "sfx_win.wav";
+    public static final String BGM_GAMEPLAY = "bgm_gameplay.mp3";
 
     private static boolean enabled = true;
+    private static GreenfootSound bgm;
 
     private SoundFX()
     {
@@ -25,6 +28,10 @@ public final class SoundFX
     public static void setEnabled(boolean enable)
     {
         enabled = enable;
+        if (!enable)
+        {
+            stopBgm();
+        }
     }
 
     public static boolean isEnabled()
@@ -48,6 +55,66 @@ public final class SoundFX
         catch (Throwable ignored)
         {
             // Headless tests or muted environments keep running cleanly.
+        }
+    }
+
+    /**
+     * Starts looping background music if enabled.
+     */
+    public static void startBgm()
+    {
+        if (!enabled)
+        {
+            return;
+        }
+        try
+        {
+            if (bgm == null)
+            {
+                bgm = new GreenfootSound(BGM_GAMEPLAY);
+            }
+            if (!bgm.isPlaying())
+            {
+                bgm.playLoop();
+            }
+        }
+        catch (Throwable ignored)
+        {
+            // Audio hardware fallback
+        }
+    }
+
+    /**
+     * Stops the looping background music.
+     */
+    public static void stopBgm()
+    {
+        try
+        {
+            if (bgm != null && bgm.isPlaying())
+            {
+                bgm.stop();
+            }
+        }
+        catch (Throwable ignored)
+        {
+        }
+    }
+
+    /**
+     * Pauses the looping background music.
+     */
+    public static void pauseBgm()
+    {
+        try
+        {
+            if (bgm != null && bgm.isPlaying())
+            {
+                bgm.pause();
+            }
+        }
+        catch (Throwable ignored)
+        {
         }
     }
 }

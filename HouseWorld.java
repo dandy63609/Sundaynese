@@ -28,6 +28,7 @@ public class HouseWorld extends ExplorationWorld
     public HouseWorld(SpawnPoint spawn)
     {
         super();
+        SoundFX.startBgm();
         applyBackground();
         setupWalls();
 

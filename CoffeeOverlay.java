@@ -76,7 +76,7 @@ public class CoffeeOverlay extends MiniGameOverlay
                 break;
 
             case COMPLETE:
-                if (stateTimer >= 35 || keys.justPressedAny("space", "e"))
+                if (stateTimer >= 60 || keys.justPressedAny("space", "e"))
                 {
                     GameState.getInstance().completeAndAdvance(GameStep.STEP_1_COFFEE, GameStep.STEP_2_CHAT_WIFE);
                     closeOverlay();

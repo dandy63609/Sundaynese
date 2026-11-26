@@ -188,7 +188,7 @@ public class PhoneWorld extends ActivityWorld
     @Override
     protected void actComplete()
     {
-        if (stateTimer >= 30 || keys.justPressedAny("space", "enter", "e"))
+        if (stateTimer >= 60 || keys.justPressedAny("space", "enter", "e"))
         {
             Greenfoot.setWorld(new HouseWorld(HouseWorld.SpawnPoint.BESIDE_PHONE));
         }
@@ -373,6 +373,7 @@ public class PhoneWorld extends ActivityWorld
 
         // WhatsApp-style header
         Theme.fillRoundRect(bg, PHONE_X + 2, PHONE_Y + 2, PHONE_W - 4, 48, 12, Theme.WHATSAPP_HEADER, null, 0);
+        bg.setColor(Theme.WHATSAPP_HEADER);
         bg.fillRect(PHONE_X + 2, PHONE_Y + 34, PHONE_W - 4, 18);
 
         String title = mode == PhoneMode.WIFE_CHAT ? "Neng Siti (Istri - HK)" : "Grup Baraya Empang";

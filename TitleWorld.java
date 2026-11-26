@@ -87,6 +87,7 @@ public class TitleWorld extends BaseWorld
     {
         GameState.getInstance().reset();
         SoundFX.play(SoundFX.HIT);
+        SoundFX.startBgm();
         Greenfoot.setWorld(new HouseWorld(HouseWorld.SpawnPoint.BESIDE_BED));
     }
 }

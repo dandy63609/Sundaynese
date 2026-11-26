@@ -56,7 +56,7 @@ public abstract class MiniGameOverlay extends Actor implements MiniGame
     {
         canvas.clear();
         canvas.setColor(Theme.SCRIM_DARK);
-        canvas.fillRect(0, 0, Theme.WORLD_WIDTH, Theme.WORLD_HEIGHT);
+        canvas.fillRect(0, Theme.HUD_HEIGHT, Theme.WORLD_WIDTH, Theme.WORLD_HEIGHT - Theme.HUD_HEIGHT);
         Theme.fillRoundRect(canvas, cardX, cardY, cardW, cardH, 14, Theme.SURFACE_HUD, borderColor, 3);
     }
 

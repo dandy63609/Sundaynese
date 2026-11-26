@@ -18,6 +18,7 @@ public class WinWorld extends BaseWorld
     public WinWorld()
     {
         super(false);
+        SoundFX.stopBgm();
         SoundFX.play(SoundFX.WIN);
         renderWin();
         hidePrompt();

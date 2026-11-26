@@ -11,7 +11,7 @@ public abstract class BaseWorld extends World
 
     protected BaseWorld(boolean showHud)
     {
-        super(Theme.WORLD_WIDTH, Theme.WORLD_HEIGHT, 1);
+        super(Theme.WORLD_WIDTH, Theme.WORLD_HEIGHT, 1, false);
         configurePaintOrder();
         if (showHud)
         {
@@ -25,11 +25,11 @@ public abstract class BaseWorld extends World
     protected void configurePaintOrder()
     {
         setPaintOrder(
-            MiniGameOverlay.class,
             RetryBanner.class,
             HudOverlay.class,
             PromptPill.class,
             SpeechBubble.class,
+            MiniGameOverlay.class,
             HotspotHighlight.class,
             BapakActor.class,
             NpcDadActor.class,
