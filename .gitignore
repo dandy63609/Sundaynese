@@ -1,0 +1,9 @@
+# Greenfoot / Java compiled & metadata artifacts
+*.class
+*.ctxt
+doc/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+desktop.ini
